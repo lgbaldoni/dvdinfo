@@ -13,7 +13,8 @@
 message(Running Qmake for Win32 (Eclipse-MinGW) platform)
 TEMPLATE = app
 LANGUAGE = C++
-CONFIG += debug release
+CONFIG += debug \
+    release
 CONFIG += qt
 HEADERS += ../src/dvdtitleinfoview.h \
     ../src/dvdinfoview.h \
@@ -28,4 +29,3 @@ TARGET = dvdinfo
 LIBS += -ldvdread \
     -ldvdcss
 DEFINES += __STDC_LIMIT_MACROS
- 
