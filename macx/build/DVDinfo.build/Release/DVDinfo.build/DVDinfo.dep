@@ -1,0 +1,13 @@
+b78143d68dc7fa92050c77aceeed1a46 edc4cb937fcc44c445281ef21a8c6a06 ffffffffffffffffffffffffffffffff 102 /rd/src/dvdinfo/dvdinfo-trunk/macx/DVDinfo.app
+7cc8d5ac74704fc04fdbe75d2f9f833b cb49967af9b7b5524ad790f1c172997d ffffffffffffffffffffffffffffffff 102 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/Release/DVDinfo.app
+caeca7eaae7c79103ef0bb5672b6e0d5 b6247246da0c36d0712b5c0b5d2963ee ffffffffffffffffffffffffffffffff 91608 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/Release/DVDinfo.app/Contents/MacOS/DVDinfo
+00000000476b958c000000000000022d c83f668bf6dbd61632c0cea306398f8f ffffffffffffffffffffffffffffffff 8 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/Release/DVDinfo.app/Contents/PkgInfo
+00000000476b958c000000000000022d c83f668bf6dbd61632c0cea306398f8f ffffffffffffffffffffffffffffffff 525 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/Release/DVDinfo.app/Contents/Info.plist
+00000000000000000000000000000000 3f709edecc0cd56a8093e8d7a72fdc69 ffffffffffffffffffffffffffffffff 8384 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/moc_mainwindow.o
+00000000000000000000000000000000 0df220cd47f54d716debddc229753cd5 ffffffffffffffffffffffffffffffff 6348 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/moc_dvdinfoview.o
+00000000000000000000000000000000 5dfdb5a1007756b5a316329f36ba6504 ffffffffffffffffffffffffffffffff 6452 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/moc_dvdtitleinfoview.o
+000000004763337e00000000000003bc f2e8d9d9685761bc6419b5b44bd22253 ffffffffffffffffffffffffffffffff 1512 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/main.o
+000000004702250e000000000000ecfe 2535c01642c3a0d2b682cef60323ebda ffffffffffffffffffffffffffffffff 48548 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/mainwindow.o
+00000000473c28e90000000000003215 d612ae980278269254f0724d1c2a42d4 ffffffffffffffffffffffffffffffff 13216 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/dvdinfocore.o
+0000000000001ec9000000000000a6e0 e26d02995ae218697a388f2f17f96827 ffffffffffffffffffffffffffffffff 7876 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/dvdinfoview.o
+0000000047692597000000000000b3e4 46311996565ff28d8ccd3afc8bdb37d5 ffffffffffffffffffffffffffffffff 15140 /rd/src/dvdinfo/dvdinfo-trunk/macx/build/DVDinfo.build/Release/DVDinfo.build/Objects-normal/i386/dvdtitleinfoview.o
