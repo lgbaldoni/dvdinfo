@@ -1,0 +1,519 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 42;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */; };
+		0906DF28750D0609E141693F /* main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = A98C72B30428A8FB182A3E06 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
+		10BDAEF90D1BCD0F00B3CA27 /* DVDinfo.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */; };
+		190A836EAF94CFA54533328B /* moc_dvdinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = B35B2E6DA0B8CFCF7B6BA123 /* moc_dvdinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
+		26C2BED6C570C95F5243C556 /* moc_mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		3BE55191F0537FD2CB13151F /* dvdinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 581F7E808CACC4A045344C11 /* dvdinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
+		4A2684139E460F6E467F4432 /* dvdinfocore.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 44B24F81D740BE8D24CE556D /* dvdinfocore.cpp */; settings = {ATTRIBUTES = (); }; };
+		501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 9B36DA7E32F0304E780E7972 /* QtGui.framework */; };
+		51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 821416211D63F190AAAD016A /* AppKit.framework */; };
+		8E13B088D23DC94A1EED8D33 /* mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 650CEDC9AF3E67BE0AABAC79 /* mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
+		C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = DA138F75C9F545CDAE7FB264 /* Carbon.framework */; };
+		DC0A03CB321976EE2B58D6DE /* moc_dvdtitleinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 844C3FEE0CA0F9C8F07DC24A /* moc_dvdtitleinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
+		EBE483A63B8AD3B47FA2C080 /* dvdtitleinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 203EFF6AE8C07BFBA0CEDE18 /* dvdtitleinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
+		F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
+			dstSubfolderSpec = 0;
+			files = (
+				10BDAEF90D1BCD0F00B3CA27 /* DVDinfo.app in Project Copy */,
+			);
+			name = "Project Copy";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DVDinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		203EFF6AE8C07BFBA0CEDE18 /* dvdtitleinfoview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dvdtitleinfoview.cpp; path = ../src/dvdtitleinfoview.cpp; sourceTree = "<group>"; };
+		27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
+		297E81D3E5A9DCF28229267A /* dvdinfo-macx.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dvdinfo-macx.pro"; sourceTree = "<group>"; };
+		336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_mainwindow.cpp; sourceTree = "<group>"; };
+		44B24F81D740BE8D24CE556D /* dvdinfocore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dvdinfocore.cpp; path = ../src/dvdinfocore.cpp; sourceTree = "<group>"; };
+		581F7E808CACC4A045344C11 /* dvdinfoview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dvdinfoview.cpp; path = ../src/dvdinfoview.cpp; sourceTree = "<group>"; };
+		650CEDC9AF3E67BE0AABAC79 /* mainwindow.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = mainwindow.cpp; path = ../src/mainwindow.cpp; sourceTree = "<group>"; };
+		7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtCore.framework; path = /Library/Frameworks/QtCore.framework; sourceTree = "<absolute>"; };
+		821416211D63F190AAAD016A /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		844C3FEE0CA0F9C8F07DC24A /* moc_dvdtitleinfoview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_dvdtitleinfoview.cpp; sourceTree = "<group>"; };
+		95B1F14300C832A1C2F0299A /* dvdtitleinfoview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dvdtitleinfoview.h; path = ../src/dvdtitleinfoview.h; sourceTree = "<group>"; };
+		9B36DA7E32F0304E780E7972 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = /Library/Frameworks/QtGui.framework; sourceTree = "<absolute>"; };
+		A98C72B30428A8FB182A3E06 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../src/main.cpp; sourceTree = "<group>"; };
+		B35B2E6DA0B8CFCF7B6BA123 /* moc_dvdinfoview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = moc_dvdinfoview.cpp; sourceTree = "<group>"; };
+		B38DE5F355736623429C97B3 /* mainwindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = mainwindow.h; path = ../src/mainwindow.h; sourceTree = "<group>"; };
+		B5D4AFC4A9E5B7B3106321D2 /* dvdinfocore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dvdinfocore.h; path = ../src/dvdinfocore.h; sourceTree = "<group>"; };
+		DA138F75C9F545CDAE7FB264 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
+		E31FD8383FA05E67B1D42379 /* dvdinfoview.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = dvdinfoview.h; path = ../src/dvdinfoview.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2A1043669E6E5A7426EA502A /* Frameworks & Libraries */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				501667F26B3C1FF6767A7C12 /* QtGui.framework in Frameworks & Libraries */,
+				C8FD4A1AAA37CF2CA2824CCF /* Carbon.framework in Frameworks & Libraries */,
+				51D4DBF7CB8537BE86EBD055 /* AppKit.framework in Frameworks & Libraries */,
+				069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */,
+				F9E76E570E10AF14870553A7 /* ApplicationServices.framework in Frameworks & Libraries */,
+			);
+			name = "Frameworks & Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05596AB53D8D521C69802C27 /* DVDinfo */ = {
+			isa = PBXGroup;
+			children = (
+				FB61758D0F0FDA4BA867C3D5 /* Sources */,
+				46E892BBB6BB6952967E0561 /* Temporary Sources */,
+				883D7615C4D2DE3FA1218F12 /* Headers */,
+				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
+				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
+				10BDAEF70D1BCD0F00B3CA27 /* Products */,
+			);
+			name = DVDinfo;
+			sourceTree = "<group>";
+		};
+		10BDAEF70D1BCD0F00B3CA27 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4458B98565818D7E2682FA2D /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				90EA38E2E04640FD4C27618C /* src */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+		46E892BBB6BB6952967E0561 /* Temporary Sources */ = {
+			isa = PBXGroup;
+			children = (
+				844C3FEE0CA0F9C8F07DC24A /* moc_dvdtitleinfoview.cpp */,
+				B35B2E6DA0B8CFCF7B6BA123 /* moc_dvdinfoview.cpp */,
+				336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */,
+			);
+			name = "Temporary Sources";
+			sourceTree = "<group>";
+		};
+		58044B046310C858CE5E1612 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				203EFF6AE8C07BFBA0CEDE18 /* dvdtitleinfoview.cpp */,
+				581F7E808CACC4A045344C11 /* dvdinfoview.cpp */,
+				44B24F81D740BE8D24CE556D /* dvdinfocore.cpp */,
+				650CEDC9AF3E67BE0AABAC79 /* mainwindow.cpp */,
+				A98C72B30428A8FB182A3E06 /* main.cpp */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		7CABE3C80E79AD2B307756D2 /* Sources [qmake] */ = {
+			isa = PBXGroup;
+			children = (
+				297E81D3E5A9DCF28229267A /* dvdinfo-macx.pro */,
+			);
+			name = "Sources [qmake]";
+			sourceTree = "<group>";
+		};
+		883D7615C4D2DE3FA1218F12 /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				4458B98565818D7E2682FA2D /* .. */,
+			);
+			name = Headers;
+			sourceTree = "<group>";
+		};
+		90EA38E2E04640FD4C27618C /* src */ = {
+			isa = PBXGroup;
+			children = (
+				95B1F14300C832A1C2F0299A /* dvdtitleinfoview.h */,
+				E31FD8383FA05E67B1D42379 /* dvdinfoview.h */,
+				B5D4AFC4A9E5B7B3106321D2 /* dvdinfocore.h */,
+				B38DE5F355736623429C97B3 /* mainwindow.h */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+		BFA3A29D17FD123C907B6E35 /* .. */ = {
+			isa = PBXGroup;
+			children = (
+				58044B046310C858CE5E1612 /* src */,
+			);
+			name = ..;
+			sourceTree = "<group>";
+		};
+		ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				9B36DA7E32F0304E780E7972 /* QtGui.framework */,
+				DA138F75C9F545CDAE7FB264 /* Carbon.framework */,
+				821416211D63F190AAAD016A /* AppKit.framework */,
+				7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */,
+				27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		FB61758D0F0FDA4BA867C3D5 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BFA3A29D17FD123C907B6E35 /* .. */,
+			);
+			name = Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		79299C90A67F27A8BBB91451 /* DVDinfo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10BDAF180D1BCD1F00B3CA27 /* Build configuration list for PBXNativeTarget "DVDinfo" */;
+			buildPhases = (
+				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
+				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
+				F6069D5A5DA8AA28EDB8B3C6 /* Project Copy */,
+				C29B8785722055ED95EF7B57 /* Build Sources */,
+				2A1043669E6E5A7426EA502A /* Frameworks & Libraries */,
+				3787F99312C85FF0073FD7BA /* Bundle Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DVDinfo;
+			productName = DVDinfo;
+			productReference = 10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91B15E841AA80083484172DE /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "DVDinfo" */;
+			compatibilityVersion = "Xcode 2.4";
+			hasScannedForEncodings = 1;
+			mainGroup = 05596AB53D8D521C69802C27 /* DVDinfo */;
+			productRefGroup = 10BDAEF70D1BCD0F00B3CA27 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				79299C90A67F27A8BBB91451 /* DVDinfo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3787F99312C85FF0073FD7BA /* Bundle Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Bundle Resources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Preprocessors";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /rd/src/dvdinfo/dvdinfo-trunk/macx -f DVDinfo.xcodeproj/qt_preprocess.mak";
+		};
+		D7BA7D76DAB5DD13389D6332 /* Qt Qmake */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "Qt Qmake";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /rd/src/dvdinfo/dvdinfo-trunk/macx -f DVDinfo.xcodeproj/qt_makeqmake.mak";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C29B8785722055ED95EF7B57 /* Build Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBE483A63B8AD3B47FA2C080 /* dvdtitleinfoview.cpp in Build Sources */,
+				3BE55191F0537FD2CB13151F /* dvdinfoview.cpp in Build Sources */,
+				4A2684139E460F6E467F4432 /* dvdinfocore.cpp in Build Sources */,
+				8E13B088D23DC94A1EED8D33 /* mainwindow.cpp in Build Sources */,
+				0906DF28750D0609E141693F /* main.cpp in Build Sources */,
+				DC0A03CB321976EE2B58D6DE /* moc_dvdtitleinfoview.cpp in Build Sources */,
+				190A836EAF94CFA54533328B /* moc_dvdinfoview.cpp in Build Sources */,
+				26C2BED6C570C95F5243C556 /* moc_mainwindow.cpp in Build Sources */,
+			);
+			name = "Build Sources";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		10BDAF080D1BCD1000B3CA27 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.3/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-ldvdread",
+					"-ldvdcss",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DVDinfo;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Debug;
+		};
+		10BDAF090D1BCD1000B3CA27 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.3/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-ldvdread",
+					"-ldvdcss",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DVDinfo;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Release;
+		};
+		10BDAF0A0D1BCD1000B3CA27 /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
+				DYLIB_COMPATIBILITY_VERSION = 1.0;
+				DYLIB_CURRENT_VERSION = 1.0.0;
+				HEADER_SEARCH_PATHS = (
+					/Library/Frameworks/QtCore.framework/Versions/4/Headers,
+					/usr/include/QtCore,
+					/Library/Frameworks/QtGui.framework/Versions/4/Headers,
+					/usr/include/QtGui,
+					/usr/include,
+					.,
+					.,
+					/usr/local/include,
+					/System/Library/Frameworks/CarbonCore.framework/Headers,
+					"/usr/local/Qt4.3/mkspecs/macx-xcode",
+				);
+				INFOPLIST_FILE = Info.plist;
+				LEXFLAGS = "";
+				LIBRARY_SEARCH_PATHS = (
+					/Library/Frameworks,
+					/System/Library/Frameworks/,
+				);
+				OTHER_CFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_CPLUSPLUSFLAGS = (
+					"-pipe",
+					"-Os",
+					"-Wall",
+					"-W",
+					"-D__STDC_LIMIT_MACROS",
+					"-DQT_NO_DEBUG",
+					"-DQT_GUI_LIB",
+					"-DQT_CORE_LIB",
+					"-DQT_SHARED",
+				);
+				OTHER_LDFLAGS = (
+					"-headerpad_max_install_names",
+					"-L/Library/Frameworks",
+					"-ldvdread",
+					"-ldvdcss",
+					"-lz",
+					"-lm",
+					"-liconv",
+				);
+				OTHER_REZFLAGS = "";
+				PREBINDING = NO;
+				PRODUCT_NAME = DVDinfo;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "";
+				YACCFLAGS = "-d";
+			};
+			name = Default;
+		};
+		8DB1DD96F65B1BF1FFC506E0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+			};
+			name = Debug;
+		};
+		95E1EB2E5DDD587BE5B3E548 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10BDAF180D1BCD1F00B3CA27 /* Build configuration list for PBXNativeTarget "DVDinfo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10BDAF080D1BCD1000B3CA27 /* Debug */,
+				10BDAF090D1BCD1000B3CA27 /* Release */,
+				10BDAF0A0D1BCD1000B3CA27 /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		2A951308CDB28F104D0A4BD2 /* Build configuration list for PBXProject "DVDinfo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DB1DD96F65B1BF1FFC506E0 /* Debug */,
+				95E1EB2E5DDD587BE5B3E548 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91B15E841AA80083484172DE /* Project object */;
+}
