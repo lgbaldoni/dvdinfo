@@ -1,6 +1,6 @@
 // !$*UTF8*$!
 {
-	10BDAEF80D1BCD0F00B3CA27 /* DVDinfo */ = {
+	10A02DD40D312C6F00E10D32 /* DVDinfo */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
 		);
@@ -35,20 +35,35 @@
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
 	};
+	203EFF6AE8C07BFBA0CEDE18 /* dvdtitleinfoview.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {476, 3248}}";
+			sepNavSelRange = "{5928, 57}";
+			sepNavVisRange = "{5764, 294}";
+		};
+	};
+	650CEDC9AF3E67BE0AABAC79 /* mainwindow.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {701, 9198}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{2931, 1542}";
+			sepNavWindowFrame = "{{15, 97}, {760, 900}}";
+		};
+	};
 	79299C90A67F27A8BBB91451 /* DVDinfo */ = {
 		activeExec = 0;
 		executables = (
-			10BDAEF80D1BCD0F00B3CA27 /* DVDinfo */,
+			10A02DD40D312C6F00E10D32 /* DVDinfo */,
 		);
 	};
 	91B15E841AA80083484172DE /* Project object */ = {
 		activeArchitecture = i386;
 		activeBuildConfigurationName = Release;
-		activeExecutable = 10BDAEF80D1BCD0F00B3CA27 /* DVDinfo */;
+		activeExecutable = 10A02DD40D312C6F00E10D32 /* DVDinfo */;
 		activeTarget = 79299C90A67F27A8BBB91451 /* DVDinfo */;
 		codeSenseManager = 10BDAF1A0D1BCD1F00B3CA27 /* Code sense */;
 		executables = (
-			10BDAEF80D1BCD0F00B3CA27 /* DVDinfo */,
+			10A02DD40D312C6F00E10D32 /* DVDinfo */,
 		);
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -58,7 +73,7 @@
 					20,
 					243,
 					20,
-					48.16259765625,
+					48,
 					43,
 					43,
 					20,
@@ -73,8 +88,8 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 219925775;
-			PBXWorkspaceStateSaveDate = 219925775;
+			PBXPerProjectTemplateStateSaveDate = 221326447;
+			PBXWorkspaceStateSaveDate = 221326447;
 		};
 		sourceControlManager = 10BDAF190D1BCD1F00B3CA27 /* Source Control */;
 		userBuildSettings = {

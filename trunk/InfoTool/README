@@ -1,11 +1,11 @@
-#########################################################
+######################################################
 #  DVDx InfoTool project for Mac.X, Linux and Win32
 #
 #  Version: 0.9.1
 #  License: GNU GPL
 #  Author & copyright: Starbuck<starbuck@labdv.com>
 #  Date: 21-Dec-2007
-#########################################################
+######################################################
 
 This pre-release uses libdvdread to get DVD informations
 from IFO files (VOB files aren't parsed and can even be

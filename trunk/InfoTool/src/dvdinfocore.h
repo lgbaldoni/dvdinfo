@@ -30,6 +30,10 @@
 #define MAX_PATH 250
 #endif
 
+#define DVDINFOCORE_TEXTSIZE 16000
+#define DVDINFOCORE_ERRMSGSIZE 400
+#define DVDINFOCORE_ZONESEP "\n                       ============\n\n"
+
 #ifdef QT_NO_DEBUG
 #define READERSIZE 2000000		// 2MB is very large but necessary for many titles
 #else
@@ -72,7 +76,7 @@ typedef struct dvdTitleInfo {
 	dvdSubtitle_t subtitle[99];	// subtitles
 	char text[READERSIZE];		// DVD title informations in Plain Text
 	bool valid;					// true if this structure content is valid
-	char errmsg[400];			// error message if structure is not valid
+	char errmsg[DVDINFOCORE_ERRMSGSIZE];			// error message if structure is not valid
 } dvdTitleInfo_t;
 
 typedef struct dvdVtsInfo {
@@ -84,23 +88,25 @@ typedef struct dvdVtsInfo {
 	int longtitlenum;			// longest title (from 1)
 	int longpgcnum;				// longest PGC index (from 1 to pgcnum)
 	int longpgctime;			// longest PGC duration in seconds
+	char text[DVDINFOCORE_TEXTSIZE];			// VTS informations in Plain Text
 	bool valid;					// true if this structure content is valid
-	char errmsg[400];			// error message if structure is not valid
+	char errmsg[DVDINFOCORE_ERRMSGSIZE];			// error message if structure is not valid
 } dvdVtsInfo_t;
 
 typedef struct dvdInfo {
 	char path[MAX_PATH];		// path to IFO folder
 	int titles;					// number of titles
 	int vtsnum;					// number of VTS
-	char text[16000];			// DVD informations in Plain Text
+	char text[DVDINFOCORE_TEXTSIZE];			// DVD informations in Plain Text
 	bool valid;					// true if this structure content is valid
-	char errmsg[400];			// error message if structure is not valid
+	char errmsg[DVDINFOCORE_ERRMSGSIZE];			// error message if structure is not valid
 } dvdInfo_t;
 
 namespace DvdInfoCore {
 
 dvdInfo ReadDvdInfo( const char *dvdpath );
-dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title );
+dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, const int title );
+dvdVtsInfo ReadDvdVtsInfo( const char *dvd_path, const int vts );
 void SprintVideoAttributes(char *str, video_attr_t *attr);
 
 } // namespace DVDInfoCore
