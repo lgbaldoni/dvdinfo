@@ -27,13 +27,19 @@
 #include "dvdinfoview.h"
 #include "dvdtitleinfoview.h"
 #include "mainwindow.h"
-
+	
 using namespace DvdInfoCore;
 
 MainWindow::MainWindow()
 {
 	setAttribute(Qt::WA_DeleteOnClose);
 
+#ifdef QT_NO_DEBUG
+	appName = tr("DVDx InfoTool");	
+#else
+	appName = tr("DVDx InfoTool (Debug)");		
+#endif
+	
 	QFont infoFont("Courier");
 	infoFont.setStyleHint(QFont::TypeWriter);
 	
@@ -61,7 +67,8 @@ MainWindow::MainWindow()
 	createMenus();
 	(void)statusBar();
 
-	setWindowTitle(tr("DVDx InfoTool"));
+	setWindowTitle(appName);	
+	
 #ifdef WIN32
 	resize(640, 720);
 #else
@@ -83,6 +90,12 @@ void MainWindow::open()
 			QFileDialog::ShowDirsOnly); ;
 	if (!dvdPath.isEmpty())
 		loadDvdInfo(dvdPath);
+}
+
+void MainWindow::reload()
+{
+	if (!curFile.isEmpty())
+		loadDvdInfo(curFile);
 }
 
 void MainWindow::save()
@@ -115,10 +128,10 @@ void MainWindow::title(int index)
 	loadDvdTitleInfo( curFile, index + 1 );
 }
 
-void MainWindow::vts(int num)
+void MainWindow::vts(int index)
 {
-	// note: title number is title index + 1	
-	//loadDvdVtsInfo( curFile, num );
+	// note: vts number is vts index + 1
+	loadDvdVtsInfo( curFile, index + 1 );
 }
 
 void MainWindow::view(int index)
@@ -143,7 +156,7 @@ void MainWindow::about()
 {
    QMessageBox::about(this, tr("About DVDx InfoTool"),
 			tr("<br><b>About DVDx InfoTool</b><br><br>"
-			"Version 0.9.1 (Pre-release)<br>"
+			"Version 0.9.2 (Pre-release)<br>"
 			"Author: <a href='mailto:starbuck@labdv.com?subject=DVDx "
 			" InfoTool'>Starbuck&lt;starbuck@labdv.com&gt;</a><br><br>"
 			"The <b>DVDx InfoTool</b> utility shows many properties "
@@ -157,7 +170,7 @@ void MainWindow::update()
 {
    QMessageBox::about(this, tr("DVDx InfoTool new updates"),
 			tr("Click the <b><a href='http://www.labdv.com/dvdx/"
-			"infotool/version.php?v=0.9.1'>check for DVDx InfoTool "
+			"infotool/version.php?v=0.9.2'>check for DVDx InfoTool "
 			"updates link</a></b> to connect to the application homepage."));
 }
 
@@ -191,12 +204,19 @@ void MainWindow::createActions()
 	exitAct->setStatusTip(tr("Exit the application"));
 	connect(exitAct, SIGNAL(triggered()), qApp, SLOT(closeAllWindows()));
 
+	reloadAct = new QAction(tr("&DVD informations"), this);
+	reloadAct->setStatusTip(tr("Reload current DVD informations"));
+	connect(reloadAct, SIGNAL(triggered()), this, SLOT(reload()));
+	
+	for (int i = 0; i < 99; i++) {
+		vtsAct[i] = 0;
+	}
+	
 	for (int i = 0; i < 99; i++) {
 		titleAct[i] = 0;
 	}
 	
 	viewSignalMapper = new QSignalMapper(this);
-
 
 	viewStdAct = new QAction(tr("&Standard"), this);
 	viewStdAct->setStatusTip(tr("View commonly used DVD-Video informations"));
@@ -205,7 +225,6 @@ void MainWindow::createActions()
 	viewStdAct->setDisabled(true);
 	connect(viewStdAct, SIGNAL(triggered()), viewSignalMapper, SLOT(map()));
 
-	
 	viewTxtAct = new QAction(tr("&Text"), this);
 	viewTxtAct->setStatusTip(tr("View most DVD-Video informations in plain text"));
 	viewTxtAct->setCheckable(true);
@@ -252,7 +271,12 @@ void MainWindow::createTitleActions()
 
 	if ( !currentDvdInfo.valid )
 		return;
-		
+	
+	if ( currentDvdInfo.titles < 1 )
+		return;
+	
+	titlesMenu->addSeparator();
+	
 	titlesSignalMapper = new QSignalMapper(this);
 
 	for (int i = 0; i < currentDvdInfo.titles; ++i) {
@@ -278,7 +302,12 @@ void MainWindow::createVtsActions()
 
 	if ( !currentDvdInfo.valid )
 		return;
-		
+	
+	if ( currentDvdInfo.vtsnum < 1 )
+		return;
+	
+	vtsMenu->addSeparator();
+	
 	vtsSignalMapper = new QSignalMapper(this);
 
 	for (int i = 0; i < currentDvdInfo.vtsnum; ++i) {
@@ -309,11 +338,13 @@ void MainWindow::createMenus()
 	menuBar()->addSeparator();
 	
 	vtsMenu = menuBar()->addMenu(tr("&VTS"));
+	vtsMenu->addAction(reloadAct);
 	vtsMenu->setEnabled(false);
 	
 	menuBar()->addSeparator();
 	
 	titlesMenu = menuBar()->addMenu(tr("&Titles"));
+	titlesMenu->addAction(reloadAct);
 	titlesMenu->setEnabled(false);
 	
 	menuBar()->addSeparator();
@@ -370,6 +401,7 @@ void MainWindow::loadDvdInfo(const QString &dvdPath)
 standard view is not available in this version */
 	
 	setCurrentDvdPath(dvdPath);
+	createVtsActions();
 	createTitleActions();
 	statusBar()->showMessage(tr("DVD informations loaded"), 2000);
 }
@@ -393,7 +425,7 @@ void MainWindow::saveDvdInfo(const QString &infoFilePath)
 	statusBar()->showMessage(tr("DVD-Video informations saved"), 2000);
 }
 
-void MainWindow::loadDvdTitleInfo(const QString &dvdPath, int title)
+void MainWindow::loadDvdTitleInfo(const QString &dvdPath, const int title)
 {
 	currentDvdTitleInfo = ReadDvdTitleInfo( (const char *) dvdPath.toAscii(), title );
 
@@ -442,7 +474,7 @@ standard view is not available in this version */
 	statusBar()->showMessage(tr("DVD title informations loaded"), 2000);
 }
 
-void MainWindow::saveDvdTitleInfo(const QString &infoFilePath, int title)
+void MainWindow::saveDvdTitleInfo(const QString &infoFilePath, const int title)
 {
 
 
@@ -450,13 +482,52 @@ void MainWindow::saveDvdTitleInfo(const QString &infoFilePath, int title)
 	statusBar()->showMessage(tr("DVD title informations saved"), 2000);
 }
 
+void MainWindow::loadDvdVtsInfo(const QString &dvdPath, const int vts)
+{
+	// TODO: replace with ReadDvdInfo() then getDvdVtsInfo()
+	
+	currentDvdVtsInfo = ReadDvdVtsInfo( (const char *) dvdPath.toAscii(), vts );
+
+	if ( !currentDvdVtsInfo.valid ) {
+		QMessageBox::warning(this, tr("DVDx InfoTool"),
+							 tr("Cannot load VTS informations:\n\n%1\n")
+							 .arg(currentDvdVtsInfo.errmsg));
+		return;
+	}
+
+	QString str( currentDvdVtsInfo.text );
+	stdTitleView->setPath( currentDvdTitleInfo.path );
+	
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+	allView->setPlainText( str );
+	QApplication::restoreOverrideCursor();
+
+	QString strView = getDvdVtsInfoTextView( str );
+	
+	QApplication::setOverrideCursor(Qt::WaitCursor);
+	txtView->setPlainText( strView );
+	QApplication::restoreOverrideCursor();
+	
+/*
+	int currentView = views->currentIndex();
+	if ( views->widget(0) != (QWidget *) stdTitleView ) {
+		views->removeWidget(stdView);
+		views->insertWidget( 0 , stdTitleView );
+	}
+	views->setCurrentIndex( currentView );
+standard view is not available in this version */
+	
+	setCurrentDvdPath(dvdPath);
+	statusBar()->showMessage(tr("VTS informations loaded"), 2000);
+}
+
 void MainWindow::setCurrentDvdPath(const QString &dvdPath)
 {
 	curFile = dvdPath;
 	if (curFile.isEmpty())
-		setWindowTitle(tr("DVDx InfoTool"));
+		setWindowTitle(appName);
 	else
-		setWindowTitle(tr("%1 - %2").arg(tr("DVDx InfoTool"))
+		setWindowTitle(tr("%1 - %2").arg(appName)
 									.arg(curFile));
 
 	QSettings settings("labDV", "DVDx InfoTool");
@@ -499,20 +570,25 @@ QString MainWindow::strippedName(const QString &fullFileName)
 	return QFileInfo(fullFileName).fileName();
 }
 
-QString MainWindow::getDvdInfoTextView(const QString &all ) {
-	
+QString MainWindow::getDvdInfoTextView(const QString &all ) 
+{
 	QString strSimplified;
 
 	strSimplified = all;
 	QRegExp rx( "\\s*Chapter[^\\n]+" );
 	rx.setMinimal(false);
 	strSimplified.remove(rx);
+	rx.setMinimal(true);
+	rx.setPattern( "offset.*Video attributes of VTSTT_VOBS" );
+	strSimplified.replace(rx, "Video attributes of VTSTT_VOBS");
+	rx.setPattern( "(Number of[^\n]*stream)" );
+	strSimplified.replace(rx, "  \\1");
 	
 	return strSimplified;
 }
 
-QString MainWindow::getDvdTitleInfoTextView(const QString &all ) {
-	
+QString MainWindow::getDvdTitleInfoTextView(const QString &all ) 
+{
 	QString strSimplified;
 
 	strSimplified = all;
@@ -537,6 +613,23 @@ QString MainWindow::getDvdTitleInfoTextView(const QString &all ) {
 	strSimplified.replace(rx, "\n~~~~~~~~~~~~~~~~~~\nPGC Category:");
 	rx.setPattern( "Time:[^\\n]+VOBU Sector:[^\\n]+(\\d|a|b|c|d|e|f)\\s\\n" ); 
 	strSimplified.remove(rx);
+	
+	return strSimplified;
+}
+
+QString MainWindow::getDvdVtsInfoTextView(const QString &all ) 
+{
+	QString strSimplified;
+
+	strSimplified = all;
+	QRegExp rx( "\\s*Chapter[^\\n]+" );
+	rx.setMinimal(false);
+	strSimplified.remove(rx);
+	rx.setMinimal(true);
+	rx.setPattern( "offset.*Video attributes of VTSTT_VOBS" );
+	strSimplified.replace(rx, "Video attributes of VTSTT_VOBS");
+	rx.setPattern( "(Number of[^\n]*stream)" );
+	strSimplified.replace(rx, "  \\1");
 	
 	return strSimplified;
 }

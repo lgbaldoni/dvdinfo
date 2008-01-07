@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'dvdtitleinfoview.h'
 **
-** Created: Fri Dec 21 11:29:44 2007
+** Created: Sun Jan 6 16:23:56 2008
 **      by: The Qt Meta Object Compiler version 59 (Qt 4.3.2)
 **
 ** WARNING! All changes made in this file will be lost!

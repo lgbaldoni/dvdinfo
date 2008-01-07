@@ -25,6 +25,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string>
 
 #if defined(HAVE_INTTYPES_H)
 #include <inttypes.h>
@@ -48,12 +49,12 @@
 
 #include "dvdinfocore.h"
 
-#define READ_STDOUT	\
+#define READ_STDOUT( x )	\
 	strncpy( reader, outbuf, READERSIZE );	\
-	strcat( titleInfo.text, reader );		\
+	strcat( x, reader );		\
 	fflush( stdout );						\
 	memset( outbuf, '\0', READERSIZE );
-	
+
 #define RETURN_TITLEINFO \
 	if ( ifohandle ) {			\
 		ifoClose( ifohandle );	\
@@ -73,7 +74,7 @@ namespace DvdInfoCore {
 dvd_reader_t *dvd = 0;
 ifo_handle_t *ifo_file = 0;
 tt_srpt_t *tt_srpt = 0;
-vts_attributes_t *vts_atrt = 0;
+vts_atrt_t *vts_atrt = 0;
 
 int i, j;
 
@@ -83,6 +84,8 @@ dvdInfo ReadDvdInfo( const char *dvd_path )
 {
 	dvdInfo info;
 	char buff[4000];
+	char *outbuf;
+	char *reader;
 	
 	dvd = DVDOpen( dvd_path );
 	if( !dvd ) {
@@ -100,7 +103,7 @@ dvdInfo ReadDvdInfo( const char *dvd_path )
 		return info;
 	}
 	tt_srpt = ifo_file->tt_srpt;
-	//vts_atrt = ifo_file->vts_atrt;
+	vts_atrt = ifo_file->vts_atrt;
 
 	/*
 	 * Fill in the dvdinfo structure
@@ -114,6 +117,7 @@ dvdInfo ReadDvdInfo( const char *dvd_path )
 		info.vtsnum = ifo_file->vts_atrt->nr_of_vtss;
 	}
 	
+// TODO: long title and long PGC
 /*
 	int longtitlenum = 0;
 	int longpgcnum = 0;
@@ -130,11 +134,44 @@ dvdInfo ReadDvdInfo( const char *dvd_path )
 	/*
 	 * Build the text info
 	 */
-	
+
 	::strncpy( info.path, dvd_path, MAX_PATH ); 
 	sprintf( info.text, "DVD-Video Disc Informations: %s\n\n", dvd_path );
 
-	sprintf( buff, "There are %d titles.\n", tt_srpt->nr_of_srpts );
+	/* VTS infos */ 
+
+	// we must route ifo_print outputs to our buffer (ifo_print.c from libdvdread)
+	outbuf = new char[READERSIZE];
+	reader = new char[READERSIZE];
+	
+	if ( setvbuf(stdout, outbuf, _IOFBF, READERSIZE) != 0 ) {
+		info.valid = false;
+		sprintf( info.errmsg, "- can't buffer and get output from ifo_print utility" );
+		return info;
+	}
+	fflush( stdout );
+	memset( outbuf, '\0', READERSIZE );
+		
+	ifoPrint_VTS_ATRT( vts_atrt );
+	READ_STDOUT ( info.text )
+	
+	fflush( stdout );
+	setvbuf( stdout, 0, _IONBF, 0 );  // stdout no longer buffered
+	delete[] outbuf;
+	delete[] reader;
+
+	strcat( info.text, DVDINFOCORE_ZONESEP );
+	
+	/* Title infos */
+	
+	if ( tt_srpt->nr_of_srpts > 1 )
+	{
+		sprintf( buff, "There are %d titles.\n", tt_srpt->nr_of_srpts );		
+	}
+	else
+	{
+		sprintf( buff, "There is %d title.\n", tt_srpt->nr_of_srpts );	
+	}
 	strcat( info.text, buff );
 
 	for( i = 0; i < tt_srpt->nr_of_srpts; ++i ) {
@@ -192,7 +229,7 @@ dvdInfo ReadDvdInfo( const char *dvd_path )
 	return info;
 }
 
-dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
+dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, const int title )
 {
 	dvdTitleInfo titleInfo;
 	char *outbuf;
@@ -217,6 +254,8 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 	if( !dvd ) {
 		titleInfo.valid = false;
 		sprintf( titleInfo.errmsg, "- can't open DVD at %s", dvd_path );
+		fflush( stdout );
+		setvbuf( stdout, 0, _IONBF, 0 );  // stdout no longer buffered
 		RETURN_TITLEINFO
 	}
 	
@@ -224,6 +263,8 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 	if ( !ifohandle ) {
 		titleInfo.valid = false;
 		sprintf( titleInfo.errmsg, "- can't open IFO file for title %d at %s", title, dvd_path );
+		fflush( stdout );
+		setvbuf( stdout, 0, _IONBF, 0 );  // stdout no longer buffered
 		RETURN_TITLEINFO
 	}
 	tt_srpt = ifohandle->tt_srpt;
@@ -251,12 +292,12 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 
 		strcat( titleInfo.text, "VMG top level\n-------------\n" );
 		ifoPrint_VMGI_MAT(ifohandle->vmgi_mat);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 		
 		strcat( titleInfo.text, "\nFirst Play PGC\n--------------\n" );
 		if ( ifohandle->first_play_pgc ) {
 			ifoPrint_PGC(ifohandle->first_play_pgc);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 			
 		} else {
 			strcat( titleInfo.text, "No First Play PGC present\n" );
@@ -265,13 +306,13 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "\nTitle Track search pointer table\n" );
 		strcat( titleInfo.text, "------------------------------------------------\n" );
 		ifoPrint_TT_SRPT(ifohandle->tt_srpt);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 
 		strcat( titleInfo.text, "\nMenu PGCI Unit table\n" );
 		strcat( titleInfo.text, "--------------------\n" );
 		if ( ifohandle->pgci_ut ) {
 			ifoPrint_PGCI_UT(ifohandle->pgci_ut);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No PGCI Unit table present\n" );
 		}
@@ -280,7 +321,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "------------------------------------\n" );
 		if ( ifohandle->ptl_mait ) {
 			ifoPrint_PTL_MAIT(ifohandle->ptl_mait);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Parental Management Information present\n" );
 		}
@@ -288,14 +329,14 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "\nVideo Title Set Attribute Table\n" );
 		strcat( titleInfo.text, "-------------------------------\n" );
 		ifoPrint_VTS_ATRT(ifohandle->vts_atrt);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 		
 		strcat( titleInfo.text, "\nText Data Manager Information\n" );
 		strcat( titleInfo.text, "-----------------------------\n" );
 		if ( ifohandle->txtdt_mgi ) {
 			// next one isn't imlplemented yet
 			// ifoPrint_TXTDT_MGI(&(vmgi->txtdt_mgi));
-			// READ_STDOUT
+			// READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Text Data Manager Information present\n" );
 		}
@@ -304,7 +345,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "-----------------\n" );
 		if ( ifohandle->menu_c_adt ) {
 			ifoPrint_C_ADT(ifohandle->menu_c_adt);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Menu Cell Adress table present\n" );
 		}
@@ -313,7 +354,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "-----------------\n" );
 		if ( ifohandle->menu_vobu_admap ) {
 			ifoPrint_VOBU_ADMAP(ifohandle->menu_vobu_admap);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Menu VOBU address map present\n" );   
 		}
@@ -323,23 +364,23 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		
 		strcat( titleInfo.text, "VTS top level\n-------------\n" );
 		ifoPrint_VTSI_MAT(ifohandle->vtsi_mat);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 		
 		strcat( titleInfo.text, "\nPart of Title Track search pointer table\n" );
 		strcat( titleInfo.text, "----------------------------------------------\n" );
 		ifoPrint_VTS_PTT_SRPT(ifohandle->vts_ptt_srpt);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 		
 		strcat( titleInfo.text, "\nPGCI Unit table\n" );
 		strcat( titleInfo.text, "--------------------\n" );
 		ifoPrint_PGCIT(ifohandle->vts_pgcit);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 
 		strcat( titleInfo.text, "\nMenu PGCI Unit table\n" );
 		strcat( titleInfo.text, "--------------------\n" );
 		if(ifohandle->pgci_ut) {
 			ifoPrint_PGCI_UT(ifohandle->pgci_ut);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Menu PGCI Unit table present\n" );
 		}
@@ -348,7 +389,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "-----------------\n" );
 		if(ifohandle->vts_tmapt) {
 			ifoPrint_VTS_TMAPT(ifohandle->vts_tmapt);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Time Search table present\n" );
 		}
@@ -357,7 +398,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "-----------------\n" );
 		if(ifohandle->menu_c_adt) {
 			ifoPrint_C_ADT(ifohandle->menu_c_adt);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Cell Adress table present\n" );
 		}
@@ -366,7 +407,7 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "-----------------\n" );
 		if(ifohandle->menu_vobu_admap) {
 			ifoPrint_VOBU_ADMAP(ifohandle->menu_vobu_admap);
-			READ_STDOUT
+			READ_STDOUT ( titleInfo.text )
 		} else {
 			strcat( titleInfo.text, "No Menu VOBU address map present\n" );
 		}
@@ -374,12 +415,12 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 		strcat( titleInfo.text, "\nCell Adress table\n" );
 		strcat( titleInfo.text, "-----------------\n" );
 		ifoPrint_C_ADT(ifohandle->vts_c_adt);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 
 		strcat( titleInfo.text, "\nVideo Title Set VOBU address map\n" );
 		strcat( titleInfo.text, "-----------------\n" );
 		ifoPrint_VOBU_ADMAP(ifohandle->vts_vobu_admap);
-		READ_STDOUT
+		READ_STDOUT ( titleInfo.text )
 	}
 
 	fflush( stdout );
@@ -387,6 +428,101 @@ dvdTitleInfo ReadDvdTitleInfo( const char *dvd_path, int title )
 	
 	titleInfo.valid = true;
 	RETURN_TITLEINFO
+}
+
+dvdVtsInfo ReadDvdVtsInfo( const char *dvd_path, const int vts )
+{
+	int titles = 0;
+	dvdVtsInfo vtsInfo;
+
+	dvdInfo info = ReadDvdInfo( dvd_path );
+	if ( !info.valid ) {
+		vtsInfo.valid = false;
+		sprintf( vtsInfo.errmsg, "- can't open DVD at %s", dvd_path );
+		return vtsInfo;
+	}
+	
+	::strncpy( vtsInfo.path, dvd_path, MAX_PATH ); 
+	vtsInfo.set = vts;
+	
+	// filter out unrelevant informations  from the dvdInfo data
+	std::string str ( info.text );
+	std::string pat;
+	char buf[100+MAX_PATH];
+	int h, i, j, k;
+	
+	// filter out before expected VTS data
+	sprintf( buf, "Video Title Set %i\n", vts );
+	pat = buf;
+	i = str.find( pat );
+	str.erase( 0, i );
+	
+	// filter out in between expected VTS data and title zone separator
+	sprintf( buf, "\nVideo Title Set %i\n", vts + 1 );
+	pat = buf;
+	i = str.find( pat );
+	if ( i != (int) std::string::npos )
+	{
+		pat = DVDINFOCORE_ZONESEP;
+		j = str.find( pat );
+		str.erase( str.begin() + i, str.begin() + j );
+	}
+	
+	// filter out title count
+	pat = "There ";
+	h = str.find( pat );
+	pat = "Title 1:";
+	j = str.find( pat );
+	str.erase( str.begin() + h, str.begin() + j );
+	
+	// filter out every title not in expected VTS
+	for ( k = 0; k < info.titles; k++ )
+	{
+		sprintf( buf, "\nTitle %d:\n", k + 1 );
+		pat = buf;
+		i = str.find( pat );
+
+		sprintf( buf, "\nTitle %d:\n", k + 2 );
+		pat = buf;
+		j = str.find( pat );	
+
+		std::string sub = str.substr( i, j - i );
+		sprintf( buf, "In VTS: %d", vts );
+		pat = buf;
+		int found = sub.find( pat );
+		if ( found == (int) std::string::npos )
+		{
+			if ( k == info.titles - 1 ) {
+				str.erase( i );
+			}
+			else
+			{
+				str.erase( str.begin() + i, str.begin() + j );	
+			}
+		}
+		else
+		{
+			titles++;
+		}
+	}
+	
+	if ( titles > 1 )
+	{
+		sprintf( buf, "There are %d titles in VTS %d\n\n", titles, vts );
+	}
+	else
+	{
+		sprintf( buf, "There is %d title in VTS %d\n\n", titles, vts );
+	}
+	str.insert( h, buf );
+	
+	sprintf( buf, "DVD-Video Informations: VTS %d\n\nPath is %s\n\n", vts, dvd_path );
+	str = buf + str;
+	::strncpy( vtsInfo.text, str.c_str(), DVDINFOCORE_TEXTSIZE );
+	
+	vtsInfo.titles = titles;
+	vtsInfo.valid = true;
+	return vtsInfo;
 }
 
 void SprintVideoAttributes(char *str, video_attr_t *attr) {

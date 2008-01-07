@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		069D05B0128AE5DC7EE31738 /* QtCore.framework in Frameworks & Libraries */ = {isa = PBXBuildFile; fileRef = 7BC2E65A5E699A5E5D834CA2 /* QtCore.framework */; };
 		0906DF28750D0609E141693F /* main.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = A98C72B30428A8FB182A3E06 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
-		10BDAEF90D1BCD0F00B3CA27 /* DVDinfo.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */; };
+		10A02DD50D312C6F00E10D32 /* DVDinfo.app in Project Copy */ = {isa = PBXBuildFile; fileRef = 10A02DD20D312C6F00E10D32 /* DVDinfo.app */; };
 		190A836EAF94CFA54533328B /* moc_dvdinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = B35B2E6DA0B8CFCF7B6BA123 /* moc_dvdinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
 		26C2BED6C570C95F5243C556 /* moc_mainwindow.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 336D3C48DD3B44974395C633 /* moc_mainwindow.cpp */; settings = {ATTRIBUTES = (); }; };
 		3BE55191F0537FD2CB13151F /* dvdinfoview.cpp in Build Sources */ = {isa = PBXBuildFile; fileRef = 581F7E808CACC4A045344C11 /* dvdinfoview.cpp */; settings = {ATTRIBUTES = (); }; };
@@ -30,7 +30,7 @@
 			dstPath = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
 			dstSubfolderSpec = 0;
 			files = (
-				10BDAEF90D1BCD0F00B3CA27 /* DVDinfo.app in Project Copy */,
+				10A02DD50D312C6F00E10D32 /* DVDinfo.app in Project Copy */,
 			);
 			name = "Project Copy";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -38,7 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DVDinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10A02DD20D312C6F00E10D32 /* DVDinfo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DVDinfo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		203EFF6AE8C07BFBA0CEDE18 /* dvdtitleinfoview.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = dvdtitleinfoview.cpp; path = ../src/dvdtitleinfoview.cpp; sourceTree = "<group>"; };
 		27AE7A480FD6C52FCA80FECD /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = /System/Library/Frameworks/ApplicationServices.framework; sourceTree = "<absolute>"; };
 		297E81D3E5A9DCF28229267A /* dvdinfo-macx.pro */ = {isa = PBXFileReference; lastKnownFileType = text; path = "dvdinfo-macx.pro"; sourceTree = "<group>"; };
@@ -84,15 +84,15 @@
 				883D7615C4D2DE3FA1218F12 /* Headers */,
 				7CABE3C80E79AD2B307756D2 /* Sources [qmake] */,
 				ED1E82605DD74B483AF3C982 /* External Frameworks and Libraries */,
-				10BDAEF70D1BCD0F00B3CA27 /* Products */,
+				10A02DD30D312C6F00E10D32 /* Products */,
 			);
 			name = DVDinfo;
 			sourceTree = "<group>";
 		};
-		10BDAEF70D1BCD0F00B3CA27 /* Products */ = {
+		10A02DD30D312C6F00E10D32 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */,
+				10A02DD20D312C6F00E10D32 /* DVDinfo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -187,7 +187,7 @@
 /* Begin PBXNativeTarget section */
 		79299C90A67F27A8BBB91451 /* DVDinfo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 10BDAF180D1BCD1F00B3CA27 /* Build configuration list for PBXNativeTarget "DVDinfo" */;
+			buildConfigurationList = 10A02DDF0D312C7E00E10D32 /* Build configuration list for PBXNativeTarget "DVDinfo" */;
 			buildPhases = (
 				D7BA7D76DAB5DD13389D6332 /* Qt Qmake */,
 				A0A52A2ADF7A1E2A99738674 /* Qt Preprocessors */,
@@ -202,7 +202,7 @@
 			);
 			name = DVDinfo;
 			productName = DVDinfo;
-			productReference = 10BDAEF60D1BCD0F00B3CA27 /* DVDinfo.app */;
+			productReference = 10A02DD20D312C6F00E10D32 /* DVDinfo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -214,7 +214,7 @@
 			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 05596AB53D8D521C69802C27 /* DVDinfo */;
-			productRefGroup = 10BDAEF70D1BCD0F00B3CA27 /* Products */;
+			productRefGroup = 10A02DD30D312C6F00E10D32 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -277,7 +277,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		10BDAF080D1BCD1000B3CA27 /* Debug */ = {
+		10A02DD80D312C7000E10D32 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
@@ -344,7 +344,7 @@
 			};
 			name = Debug;
 		};
-		10BDAF090D1BCD1000B3CA27 /* Release */ = {
+		10A02DD90D312C7000E10D32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
@@ -410,7 +410,7 @@
 			};
 			name = Release;
 		};
-		10BDAF0A0D1BCD1000B3CA27 /* Default */ = {
+		10A02DDA0D312C7000E10D32 /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUILD_ROOT = "/rd/src/dvdinfo/dvdinfo-trunk/macx";
@@ -494,12 +494,12 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		10BDAF180D1BCD1F00B3CA27 /* Build configuration list for PBXNativeTarget "DVDinfo" */ = {
+		10A02DDF0D312C7E00E10D32 /* Build configuration list for PBXNativeTarget "DVDinfo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				10BDAF080D1BCD1000B3CA27 /* Debug */,
-				10BDAF090D1BCD1000B3CA27 /* Release */,
-				10BDAF0A0D1BCD1000B3CA27 /* Default */,
+				10A02DD80D312C7000E10D32 /* Debug */,
+				10A02DD90D312C7000E10D32 /* Release */,
+				10A02DDA0D312C7000E10D32 /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

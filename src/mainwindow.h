@@ -47,11 +47,12 @@ public:
 private slots:
 	void newWindow();
 	void open();
+	void reload();
 	void save();
 	void saveAs();
 	void openRecentFile();
 	void title(int index);
-	void vts(int num);
+	void vts(int index);
 	void view(int index);
 	void about();
 	void update();
@@ -63,17 +64,20 @@ private:
 	void createMenus();
 	void loadDvdInfo(const QString &dvdPath);
 	void saveDvdInfo(const QString &infoFilePath);
-	void loadDvdTitleInfo(const QString &dvdPath, int title);
-	void saveDvdTitleInfo(const QString &infoFilePath, int title);
+	void loadDvdTitleInfo(const QString &dvdPath, const int title);
+	void saveDvdTitleInfo(const QString &infoFilePath, const int title);
+	void loadDvdVtsInfo(const QString &dvdPath, const int vts);
 	void setCurrentDvdPath(const QString &dvdPath);
 	void updateRecentFileActions();
 	QString getDvdInfoTextView(const QString &all );
 	QString getDvdTitleInfoTextView(const QString &all );
+	QString getDvdVtsInfoTextView(const QString &all );
 	
 	QSignalMapper *titlesSignalMapper;
 	QSignalMapper *vtsSignalMapper;
 	QSignalMapper *viewSignalMapper;
 	
+	QString appName;
 	QString strippedName(const QString &fullFileName);
 	QString curFile;
 
@@ -91,6 +95,7 @@ private:
 	QAction *openAct;
 	QAction *saveAct;
 	QAction *exitAct;
+	QAction *reloadAct;
 	QAction *vtsAct[99];
 	QAction *titleAct[99];
 	QActionGroup *viewGroup;
@@ -106,6 +111,8 @@ private:
 	QAction *recentFileActs[MaxRecentFiles];
 	
 	dvdInfo_t currentDvdInfo;
-	dvdTitleInfo_t currentDvdTitleInfo;};
+	dvdTitleInfo_t currentDvdTitleInfo;
+	dvdVtsInfo_t currentDvdVtsInfo;
+};
 
 #endif
