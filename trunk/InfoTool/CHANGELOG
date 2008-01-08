@@ -1,0 +1,14 @@
+DVDx InfoTool (0.9 Pre-Release)
+
+dvdinfo 0.9.2: Jan 6, 2008
+	VTS informations
+	- added VTS information views
+	- VTS menu is now enabled
+
+dvdinfo 0.9.1: Dec 22, 2007
+	Very first public pre-release
+	- VTS menu is disabled (VTS view not available yet)
+	- standard view disabled (view widgets not ready yet)
+	- recent file list display is screwed in Linux version
+	- crash with DVD Matrix NTSC (all platforms)
+	- error "can't open Ifo" occurs for many titles
