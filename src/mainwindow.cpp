@@ -20,8 +20,9 @@
  *
  *****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include <QRegExp>
+#include <stdint.h>
 #include <iostream>  // for console developer messages like: cout << "Set view: " << index << endl;
 
 #include "dvdinfoview.h"
@@ -364,7 +365,7 @@ void MainWindow::createMenus()
 
 void MainWindow::loadDvdInfo(const QString &dvdPath)
 {
-	currentDvdInfo = ReadDvdInfo( (const char *) dvdPath.toAscii() );
+	currentDvdInfo = ReadDvdInfo( (const char *) dvdPath.toLatin1() );
 
 	if ( !currentDvdInfo.valid ) {
 		QMessageBox::warning(this, tr("DVDx InfoTool"),
@@ -427,7 +428,7 @@ void MainWindow::saveDvdInfo(const QString &infoFilePath)
 
 void MainWindow::loadDvdTitleInfo(const QString &dvdPath, const int title)
 {
-	currentDvdTitleInfo = ReadDvdTitleInfo( (const char *) dvdPath.toAscii(), title );
+	currentDvdTitleInfo = ReadDvdTitleInfo( (const char *) dvdPath.toLatin1(), title );
 
 	if ( !currentDvdTitleInfo.valid ) {
 		QMessageBox::warning(this, tr("DVDx InfoTool"),
@@ -486,7 +487,7 @@ void MainWindow::loadDvdVtsInfo(const QString &dvdPath, const int vts)
 {
 	// TODO: replace with ReadDvdInfo() then getDvdVtsInfo()
 	
-	currentDvdVtsInfo = ReadDvdVtsInfo( (const char *) dvdPath.toAscii(), vts );
+	currentDvdVtsInfo = ReadDvdVtsInfo( (const char *) dvdPath.toLatin1(), vts );
 
 	if ( !currentDvdVtsInfo.valid ) {
 		QMessageBox::warning(this, tr("DVDx InfoTool"),

@@ -20,8 +20,7 @@
  *
  *****************************************************************************/
 
-#include "/rd/src/libdvdread-0.9.7/config.h"
-
+#include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>

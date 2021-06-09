@@ -20,6 +20,7 @@ TARGET = dvdinfo
 LANGUAGE = C++
 CONFIG += debug release
 CONFIG += qt
+QT += widgets
 HEADERS += ../src/dvdtitleinfoview.h \
     ../src/dvdinfoview.h \
     ../src/dvdinfocore.h \
