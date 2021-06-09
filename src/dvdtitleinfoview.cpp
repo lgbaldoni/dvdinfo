@@ -20,7 +20,7 @@
  *
  *****************************************************************************/
 
-#include <QtGui>
+#include <QtWidgets>
 #include <stdint.h>
 
 #include "dvdtitleinfoview.h"
