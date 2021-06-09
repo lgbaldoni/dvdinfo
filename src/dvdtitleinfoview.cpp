@@ -21,6 +21,7 @@
  *****************************************************************************/
 
 #include <QtGui>
+#include <stdint.h>
 
 #include "dvdtitleinfoview.h"
 

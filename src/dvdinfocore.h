@@ -22,7 +22,7 @@
 
 #ifndef DVDINFOCORE_H_
 #define DVDINFOCORE_H_
-
+#include <stdint.h>
 #include <dvdread/dvd_reader.h>
 #include <dvdread/ifo_types.h>
 

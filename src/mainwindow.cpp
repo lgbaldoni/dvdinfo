@@ -22,6 +22,7 @@
 
 #include <QtGui>
 #include <QRegExp>
+#include <stdint.h>
 #include <iostream>  // for console developer messages like: cout << "Set view: " << index << endl;
 
 #include "dvdinfoview.h"
