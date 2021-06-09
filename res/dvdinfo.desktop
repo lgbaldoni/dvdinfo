@@ -1,0 +1,10 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=dvdinfo
+Icon=tools-rip-video-dvd
+Terminal=false
+Name=DVDx InfoTool
+GenericName=DVDx InfoTool
+Comment=DVDx InfoTool shows the DVD structure of a DVD-Video disc
+Categories=AudioVideo;AudioVideoEditing;
